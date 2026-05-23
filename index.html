@@ -3,10 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
     <script src="./app.js" defer type="module"></script>
-    <title>Lista Inteligente </title>
+    <title>Lista Inteligente</title>
 </head>
 <body>
-    
+    <header>
+        <div class="escopo"> 
+            <div class="logo-titulo">
+                <img class="logo" src="./imagens/icone.png" alt="logo">
+                <h1>Lista Inteligente</h1>
+            </div>
+            <button class="novo-contato" id="btnNovoContato">+ Novo Contato</button>
+        </div>
+        <div class="buscar">
+            <input type="text" id="inputBuscar" placeholder="Digite para buscar...">
+            <button class="buscar-contato" id="btnBuscar">Buscar</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Grade onde as caixas de contatos vão aparecer dinamicamente -->
+        <div id="containerContatos" class="grade-contatos">
+            <!-- Os cards dos contatos serão injetados pelo JavaScript -->
+        </div>
+    </main>
+
+    <!-- Caixa Modal (Formulário oculto que aparece ao clicar em Novo/Editar) -->
+    <div id="modalContato" class="modal container-escondido">
+        <div class="modal-conteudo">
+            <h2>Adicionar Novo Contato</h2>
+            <form id="formContato">
+                <input type="text" id="nomeContato" placeholder="Nome" required>
+                <input type="tel" id="telContato" placeholder="Telefone" required>
+                
+                <div class="botoes-modal">
+                    <button type="button" id="btnCancelar">Cancelar</button>
+                    <button type="submit" id="btnSalvar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

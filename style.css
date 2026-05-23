@@ -1,0 +1,195 @@
+:root {
+    --cor-fundo-suave: #F5F3FF;
+    --cor-borda: #E9E3FF;
+    --cor-texto: #333333;
+    --cor-principal: #6366F1;
+  }
+  
+body{
+    background-color: var(--cor-fundo-suave);
+}
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+      background-color: #fafafa;
+      color: var(--cor-texto);
+  }
+  
+  /* Utilidades */
+  .container-escondido {
+      display: none !important;
+  }
+  
+  /* Layout do Header */
+  header {
+      background-color: white;
+      padding: 20px;
+      border-bottom: 1px solid var(--cor-borda);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .escopo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto 15px auto;
+  }
+  
+  .logo-titulo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  }
+  
+  .logo {
+      width: 40px;
+      height: 40px;
+  }
+  
+  .novo-contato {
+      background-color: var(--cor-principal);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+  }
+  
+  .buscar {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+  }
+  
+  .buscar input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--cor-borda);
+      border-radius: 8px;
+      outline: none;
+  }
+  
+  .buscar-contato {
+      background-color: #eef2ff;
+      color: var(--cor-principal);
+      border: 1px solid var(--cor-borda);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+  }
+  
+  /* Grade de Cards de Contato */
+  .grade-contatos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+  
+  /* Estilo do Card Individual */
+  .cartao-contato {
+      background-color: var(--cor-fundo-suave);
+      border: 2px solid var(--cor-borda);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .cartao-contato:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(99, 102, 241, 0.1);
+  }
+  
+  .conteudo-card h3 {
+      margin-bottom: 5px;
+      color: var(--cor-principal);
+  }
+  
+  .acoes-card button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-left: 10px;
+      transition: transform 0.1s;
+  }
+  
+  .acoes-card button:hover {
+      transform: scale(1.2);
+  }
+  
+  /* Estrutura do Modal */
+  .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+  }
+  
+  .modal-conteudo {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  }
+  
+  .modal-conteudo h2 {
+      margin-bottom: 20px;
+      color: #333;
+  }
+  
+  .modal-conteudo form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid var(--cor-borda);
+      border-radius: 8px;
+      outline: none;
+  }
+  
+  .botoes-modal {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+  }
+  
+  .botoes-modal button {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+  }
+  
+  #btnCancelar {
+      background-color: #f3f4f6;
+      color: #4b5563;
+  }
+  
+  #btnSalvar {
+      background-color: var(--cor-principal);
+      color: white;
+  }
