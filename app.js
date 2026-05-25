@@ -14,55 +14,99 @@ const btnBuscar = document.getElementById('btnBuscar');
 
 // 3. Função para renderizar um card individual na tela
 const criarCardContato = (contato) => {
-    // 1. Cria a caixa principal
     const cartao = document.createElement('div');
     cartao.classList.add('cartao-contato');
     cartao.dataset.id = contato.id;
 
-    // 2. Cria a parte do texto
     const conteudoCard = document.createElement('div');
     conteudoCard.classList.add('conteudo-card');
 
+    const foto = document.createElement('img')
+    foto.classList.add('foto-contato')
+    foto.src = contato.foto ? contato.foto : './img/avatar.jpg';
+    foto.alt = `Foto de ${contato.nome}`;
+
     const nome = document.createElement('h3');
-    nome.textContent = contato.nome; // Totalmente seguro contra XSS
+    nome.textContent = contato.nome;
 
-    const telefone = document.createElement('p');
-    telefone.textContent = `📞 ${contato.telefone}`;
+    const celular = document.createElement('p');
+    celular.textContent = `Celular: ${contato.celular || ''}`;
 
+    const email = document.createElement('p');
+    email.textContent = `E-mail: ${contato.email || ''}`;
+
+    const endereco = document.createElement('p');
+    endereco.textContent = `Endereço: ${contato.endereco || ''}`;
+
+    const cidade = document.createElement('p');
+    cidade.textContent = `Cidade: ${contato.cidade || ''}`;
+
+    conteudoCard.appendChild(foto);
     conteudoCard.appendChild(nome);
-    conteudoCard.appendChild(telefone);
+    conteudoCard.appendChild(celular);
+    conteudoCard.appendChild(email);
+    conteudoCard.appendChild(endereco);
+    conteudoCard.appendChild(cidade);
 
-    // 3. Cria os botões
     const acoesCard = document.createElement('div');
     acoesCard.classList.add('acoes-card');
 
     const btnEditar = document.createElement('button');
     btnEditar.classList.add('btn-editar');
-    btnEditar.textContent = '✏️';
+    btnEditar.textContent = 'E';
     btnEditar.title = 'Editar';
 
     const btnExcluir = document.createElement('button');
     btnExcluir.classList.add('btn-excluir');
-    btnExcluir.textContent = '🗑️';
+    btnExcluir.textContent = 'D';
     btnExcluir.title = 'Excluir';
 
     acoesCard.appendChild(btnEditar);
     acoesCard.appendChild(btnExcluir);
 
-    // 4. Junta tudo dentro do cartão principal
     cartao.appendChild(conteudoCard);
     cartao.appendChild(acoesCard);
 
-    // --- Seus eventos de cliques ---
-    btnExcluir.addEventListener('click', async () => { /* ... lógica de deletar ... */ });
-    btnEditar.addEventListener('click', () => { /* ... lógica de editar ... */ });
+    // Eventos de clique 
+    btnExcluir.addEventListener('click', async () => {
+        const confirmar = confirm(`Tem certeza que deseja excluir o contato "${contato.nome}"?`);
+
+        if (confirmar) {
+            try {
+                await deleteContato(contato.id);
+
+                alert("Contato excluído com sucesso!");
+
+                carregarContatos();
+            } catch (error) {
+                console.error("Erro ao deletar o contato:", error);
+                alert("Não foi possível excluir o contato.");
+            }
+        }
+    });
+    btnEditar.addEventListener('click', () => {
+        modalContato.classList.remove('container-escondido');
+        modalContato.querySelector('h2').textContent = "Editar Contato";
+
+        document.getElementById('fotoContato').value = contato.foto || '';
+        document.getElementById('nomeContato').value = contato.nome || '';
+        document.getElementById('telContato').value = contato.celular || '';
+        document.getElementById('emailContato').value = contato.email || '';
+        document.getElementById('enderecoContato').value = contato.endereco || '';
+        document.getElementById('cidadeContato').value = contato.cidade || '';
+
+        formContato.dataset.idEdicao = contato.id;
+    });
 
     containerContatos.appendChild(cartao);
 }
 
-// 4. Carregar/Atualizar a listagem vinda da API (GET)
 const carregarContatos = async () => {
-    containerContatos.innerHTML = ""; 
+    // Forma mais segura e rápida de limpar o container
+    while (containerContatos.firstChild) {
+        containerContatos.removeChild(containerContatos.firstChild);
+    }
+
     try {
         const contatos = await getContatos();
         if (Array.isArray(contatos)) {
@@ -73,11 +117,10 @@ const carregarContatos = async () => {
     }
 }
 
-// 5. Controle de abertura e fechamento do Modal
 btnNovoContato.addEventListener('click', () => {
     modalContato.classList.remove('container-escondido');
     modalContato.querySelector('h2').textContent = "Adicionar Novo Contato";
-    delete formContato.dataset.idEdicao; // Garante que não há ID residual
+    delete formContato.dataset.idEdicao;
 });
 
 btnCancelar.addEventListener('click', () => {
@@ -85,14 +128,18 @@ btnCancelar.addEventListener('click', () => {
     formContato.reset();
 });
 
-// 6. Submissão do Formulário (Salvar - Decide entre POST ou PUT)
+
 formContato.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const idEdicao = formContato.dataset.idEdicao;
     const dadosContato = {
         nome: document.getElementById('nomeContato').value,
-        telefone: document.getElementById('telContato').value
+        foto: document.getElementById('fotoContato').value,
+        celular: document.getElementById('telContato').value,
+        email: document.getElementById('emailContato').value,
+        endereco: document.getElementById('enderecoContato').value,
+        cidade: document.getElementById('cidadeContato').value
     };
 
     try {
@@ -109,23 +156,22 @@ formContato.addEventListener('submit', async (event) => {
         // Reseta o estado da tela, fecha o modal e recarrega os cards atualizados
         modalContato.classList.add('container-escondido');
         formContato.reset();
-        carregarContatos(); 
-        
+        carregarContatos();
+
     } catch (error) {
         console.error("Erro ao salvar dados do contato:", error);
         alert("Ocorreu um erro ao salvar o contato.");
     }
 });
 
-// 7. Mecanismo de Busca / Filtro
 const filtrarContatos = () => {
     const termoBusca = inputBuscar.value.toLowerCase();
     const cartoes = document.querySelectorAll('.cartao-contato');
 
     cartoes.forEach(cartao => {
-        const nomeContato = cartao.querySelector('h3').textContent.toLowerCase();
-        
-        if (nomeContato.includes(termoBusca)) {
+        const conteudoDoCard = cartao.textContent.toLowerCase();
+
+        if (conteudoDoCard.includes(termoBusca)) {
             cartao.style.display = "flex"; // Volta para o flex original do card
         } else {
             cartao.style.display = "none";
@@ -138,3 +184,7 @@ inputBuscar.addEventListener('input', filtrarContatos); // Busca em tempo real e
 
 // Inicializa a aplicação buscando os dados do servidor
 carregarContatos();
+// Faz a página atualizar ao clicar no logotipo
+document.querySelector('.logo').addEventListener('click', () => {
+    window.location.reload();
+});

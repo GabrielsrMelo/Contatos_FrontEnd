@@ -3,193 +3,264 @@
     --cor-borda: #E9E3FF;
     --cor-texto: #333333;
     --cor-principal: #6366F1;
-  }
-  
-body{
-    background-color: var(--cor-fundo-suave);
 }
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  body {
-      background-color: #fafafa;
-      color: var(--cor-texto);
-  }
-  
-  /* Utilidades */
-  .container-escondido {
-      display: none !important;
-  }
-  
-  /* Layout do Header */
-  header {
-      background-color: white;
-      padding: 20px;
-      border-bottom: 1px solid var(--cor-borda);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-  }
-  
-  .escopo {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto 15px auto;
-  }
-  
-  .logo-titulo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-  }
-  
-  .logo {
-      width: 40px;
-      height: 40px;
-  }
-  
-  .novo-contato {
-      background-color: var(--cor-principal);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-  }
-  
-  .buscar {
-      display: flex;
-      gap: 10px;
-      max-width: 500px;
-      margin: 0 auto;
-  }
-  
-  .buscar input {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid var(--cor-borda);
-      border-radius: 8px;
-      outline: none;
-  }
-  
-  .buscar-contato {
-      background-color: #eef2ff;
-      color: var(--cor-principal);
-      border: 1px solid var(--cor-borda);
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-  }
-  
-  /* Grade de Cards de Contato */
-  .grade-contatos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-  }
-  
-  /* Estilo do Card Individual */
-  .cartao-contato {
-      background-color: var(--cor-fundo-suave);
-      border: 2px solid var(--cor-borda);
-      border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .cartao-contato:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 12px rgba(99, 102, 241, 0.1);
-  }
-  
-  .conteudo-card h3 {
-      margin-bottom: 5px;
-      color: var(--cor-principal);
-  }
-  
-  .acoes-card button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-      margin-left: 10px;
-      transition: transform 0.1s;
-  }
-  
-  .acoes-card button:hover {
-      transform: scale(1.2);
-  }
-  
-  /* Estrutura do Modal */
-  .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-  }
-  
-  .modal-conteudo {
-      background-color: white;
-      padding: 30px;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-  }
-  
-  .modal-conteudo h2 {
-      margin-bottom: 20px;
-      color: #333;
-  }
-  
-  .modal-conteudo form input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid var(--cor-borda);
-      border-radius: 8px;
-      outline: none;
-  }
-  
-  .botoes-modal {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-  }
-  
-  .botoes-modal button {
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      font-weight: 600;
-  }
-  
-  #btnCancelar {
-      background-color: #f3f4f6;
-      color: #4b5563;
-  }
-  
-  #btnSalvar {
-      background-color: var(--cor-principal);
-      color: white;
-  }
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #eddfff94;
+    color: var(--cor-texto);
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container-escondido {
+    display: none !important;
+}
+
+header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.419);
+}
+
+.escopo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 15px auto;
+}
+
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.titulo{
+    color: var(--cor-principal);
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.novo-contato {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.buscar {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.buscar input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    outline: none;
+}
+
+.buscar-contato {
+    background-color: #eef2ff;
+    color: var(--cor-principal);
+    border: 1px solid var(--cor-borda);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Grade de Cards de Contato */
+.grade-contatos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.foto-contato {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Deixa a foto redondinha */
+    object-fit: cover; /* Faz a imagem se ajustar sem distorcer */
+    margin-bottom: 10px;
+}
+
+/* Estilo do Card Individual */
+.cartao-contato {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cartao-contato:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.1);
+}
+
+.conteudo-card h3 {
+    margin-bottom: 5px;
+    color: var(--cor-principal);
+}
+
+.acoes-card {
+    display: flex;
+    flex-direction: column; /* Deixa o botão 'E' em cima e o 'D' embaixo */
+    gap: 12px;              /* Dá um espaço confortável entre os dois botões */
+    justify-content: center;/* Centraliza os botões verticalmente no card */
+    padding-left: 15px;     /* Empurra os botões para longe do texto do contato */
+}
+
+.acoes-card button:hover {
+    transform: scale(1.2);
+}
+.acoes-card button {
+    margin: 0; 
+}
+
+/* Estrutura do Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-conteudo {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-conteudo h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.modal-conteudo form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    outline: none;
+}
+
+.botoes-modal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.botoes-modal button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#btnCancelar {
+    background-color: #f3f4f6;
+    color: #4b5563;
+}
+
+#btnSalvar {
+    background-color: var(--cor-principal);
+    color: white;
+}
+
+.btn-excluir {
+    background-color: #FEE2E2; 
+    color: #EF4444; 
+    border: 1px solid #FCA5A5;
+    padding: 6px 12px; 
+    border-radius: 6px; 
+    font-size: 0.9rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease; 
+}
+
+.btn-excluir:hover {
+    background-color: #EF4444;
+    color: white; 
+    transform: scale(1.05); 
+}
+
+.btn-excluir:active {
+    transform: scale(0.95); 
+}
+
+.btn-editar {
+    background-color: #EEF2FF;
+    color: var(--cor-principal); 
+    border: 1px solid var(--cor-borda); 
+    padding: 6px 12px; 
+    border-radius: 6px; 
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer; 
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+
+.btn-editar:hover {
+    background-color: var(--cor-principal); 
+    color: white; 
+    transform: scale(1.05); 
+}
+
+.btn-editar:active {
+    transform: scale(0.95); 
+}
+.conteudo-card {
+    font-size: 0.9rem;  
+    color: #666666;
+    display: flex;
+    flex-direction: column; 
+    align-items:flex-start;   
+    text-align:start;  
+    gap: 4px;
+    flex: 1;          
+}
